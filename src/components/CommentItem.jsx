@@ -4,6 +4,7 @@ import Form from "./Form";
 
 function CommentItem({ comment, handleAddComment }) {
   const [isFormVisible, setIsformVisible] = useState(false);
+  const [rating, setRating] = useState([0, 0]);
   const { user, message, replies } = comment;
 
   return (
@@ -19,11 +20,17 @@ function CommentItem({ comment, handleAddComment }) {
       <div className="mt-2 text-gray-700">{message}</div>
       {/* coment section content */}
       <div className="mt-2 flex justify-end">
-        <button className="rounded p-1 text-sm text-gray-500 hover:bg-gray-100">
-          👍🏻{}
+        <button
+          className="rounded p-1 text-sm text-gray-500 hover:bg-gray-100"
+          onClick={() => setRating(state => [state[0] + 1, state[1]])}
+        >
+          👍🏻{rating[0]}
         </button>
-        <button className="rounded p-1 text-sm text-gray-500 hover:bg-gray-100">
-          👎🏻{}
+        <button
+          className="rounded p-1 text-sm text-gray-500 hover:bg-gray-100"
+          onClick={() => setRating(state => [state[0], state[1] + 1])}
+        >
+          👎🏻{rating[1]}
         </button>
         <button
           className="ml-5 rounded p-1 text-sm text-gray-500 hover:bg-gray-100"
