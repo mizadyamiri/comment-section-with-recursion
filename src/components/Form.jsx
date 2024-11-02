@@ -1,13 +1,33 @@
-function Form() {
+import { useState } from "react";
+
+/* eslint-disable react/prop-types */
+function Form({ onSubmit, setIsformVisible, commentId }) {
+  const [user, setUser] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (!user || !message) return;
+
+    onSubmit(commentId, user, message);
+    setIsformVisible(false);
+    setMessage("");
+    setUser("");
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <input
         type="text"
+        value={user}
+        onChange={e => setUser(e.target.value)}
         className="my-2 w-full rounded-lg border border-gray-300 p-2 focus:outline-none focus:ring"
         placeholder="Add your Name..."
       />
       <input
         type="text"
+        value={message}
+        onChange={e => setMessage(e.target.value)}
         className="my-2 w-full rounded-lg border border-gray-300 p-2 focus:outline-none focus:ring"
         placeholder="Add a comment..."
       />
