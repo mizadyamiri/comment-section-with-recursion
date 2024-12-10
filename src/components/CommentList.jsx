@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import CommentItem from "./CommentItem";
-import Form from "./Form";
 
 function CommentList({ comments, handleAddComment }) {
   return (
@@ -16,12 +15,6 @@ function CommentList({ comments, handleAddComment }) {
           key={comment.message}
         />
       ))}
-
-      <Form
-        onSubmit={handleAddComment}
-        commentId={comments.id}
-        setIsformVisible={() => {}}
-      />
     </div>
   );
 }
